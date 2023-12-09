@@ -28,11 +28,33 @@ app.post('/books/insertbook', (req, res) => {
 
     const sql = `INSERT INTO books (title, pageqty) VALUES ('${title}', '${pageqty}')`
 
-    conn.query(sql, function(err){
+    conn.query(sql, function(err, data){
         if(err) {
             console.log(err)
+            return
         }
-        res.redirect('/')
+        const books = data
+
+        console.log(books)
+
+    })
+})
+
+app.get('/books', (req, res) => {
+    const sql = 'SELECT * FROM books'
+
+    conn.query(sql, function (err, data) {
+        if(err) {
+            console.log(err)
+            return
+        }
+
+        const books = data
+
+        console.log(books)
+
+        res.render('books', { books })
+
     })
 })
 
