@@ -4,7 +4,9 @@ const mysql = require('mysql2')
 
 const app = express()
 
-app.engine('handlebars', exphbs.create)
+app.use
+
+app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
